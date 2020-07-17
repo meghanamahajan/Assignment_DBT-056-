@@ -1,0 +1,25 @@
+                                 Assignment –2
+Introducing Relational Databases
+================================
+1) Which field of the Customers table is the primary key?
+==> cnum field is the primary key in customers table.
+--------------------------------------------------------------------------- 
+
+2) What is the 4th column of the Customers table?
+==> snum is the 4th column of the Customers table.
+--------------------------------------------------------------------------- 
+
+3) What is another word for row? For column?
+==>  coloumn=Attribute,Method,Field(DBMS)
+     Row    =Tuple,Entity,Opportunity,Record(DBMS)
+---------------------------------------------------------------------------
+
+4) Why isn’t it possible to see the first five rows of a table?
+==> It will be in ascending order of row address when u update a 
+    row ,if row length increase,then entire may be moved to some
+    other orders.
+    It only in the case of varchar that the row length may increase 
+    or decrease.
+    Hence isn’t it possible to see the first five rows of a table.
+
+=====================================================================================================

@@ -1,0 +1,208 @@
+               SQL EXERCISE 1
+
+create database SEMP;
+use SEMP;
+========================================
+1)Create the table SEMP with the following structure:- 
+create table SEMP
+(EMPNO CHAR(4),
+EMPNAME CHAR(20),
+BASIC FLOAT(9,2),
+DEPTNO CHAR(2),
+DEPTHEAD CHAR(4)
+);
+==========================================
+2)Create the table SDEPT with the following structure:- 
+create table SDEPT
+(
+DEPTNO CHAR(2),
+DEPTNAME CHAR(15) 
+);
+==========================================
+3)Insert into the SDEPT table the following values:- 
+insert into SDEPT
+ values('10','Development');
+==========================================
+4)Insert into the SEMP table the following values:- 
+insert into SEMP
+values('0001', 'SUNIL', 6000, '10',null );
+values('0002', 'HIREN', 8000, '20',null),
+values('0003', 'ALI', 4000, '10', '0001'),
+values('0004', 'GEORGE', 6000,null, '0002'); 
+============================================
+5)Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+create database demo_1;
+use demo_1;
+
+create table s
+(`s#` char(20),
+Sname char(20),
+  Status char(20),
+  City char (20)
+);
+
+create table p
+(`p#` char(20),
+Pname char(20),
+  color char(20),
+  weight float(9,2),
+  city char(20)
+);
+create table j
+(`j#` char(20),
+jname char(20),
+  City char (20)
+);
+
+create table SPJ
+(SNO varchar(2) references S,
+ PNO varchar(2) references P,
+ JNO varchar(2) references J,
+ QTY int(3)
+);
+
+ insert into SPJ
+ values("S1","P1","J1",10);
+
+insert into SPJ
+ values("S2","P2","J2",20);
+
+insert into SPJ
+ values("S3","P3","J3",30);
+
+insert into s values('S1','Smith','20','London');
+insert into S values("S2","Jones",10,"Paris");
+insert into S values("S3","Blake",30,"Paris");
+insert into S values("S4","Clark",20,"London");
+insert into S values("S5","Adams",30,"Athens");
+
+insert into P values("P1","Nut","Red",12.0,"London");
+insert into P values("P2","Bolt","Green",17,"Paris");
+insert into P values("P3","Screw","Blue",17,"Rome");
+insert into P values("P4","Screw","Red",14,"London");
+insert into P values("P5","Cam","Blue",12,"Paris");
+insert into P values("P6","Cog","Red",19,"London");
+
+insert into J values("J1","Sorter","Paris");
+insert into J values("J2","Display","Rome");
+insert into J values("J3","OCR","Athens");
+insert into J values("J4","Console","Athens");
+insert into J values("J5","RAID","London");
+ insert into J values("J6","EDS","Oslo");
+ insert into J values("J7","ARP","London");
+
+ insert into SPJ values("S1","P1","J1",200);
+insert into SPJ values("S1","P1","J4",700);
+insert into SPJ values("S2","P3","J1",400);
+insert into SPJ values("S2","P3","J2",200);
+ insert into SPJ values("S2","P3","J3",200);
+insert into SPJ values("S2","P3","J4",500);
+insert into SPJ values("S2","P3","J5",600);
+ insert into SPJ values("S2","P3","J6",400);
+insert into SPJ values("S2","P3","J7",800);
+insert into SPJ values("S2","P5","J2",100);
+
+------------------------------------------
+5)Display all the data from the S table. 
+select * from s;
++------+-------+--------+--------+
+| s#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Smith | 20     | London |
+| S2   | Jones | 10     | Paris  |
+| S3   | Blake | 30     | Paris  |
+| S4   | Clark | 20     | London |
+| S5   | Adams | 30     | Athens |
++------+-------+--------+--------+
+5 rows in set (0.08 sec)
+
+select * from p;
+mysql> select * from p;
++------+-------+-------+--------+--------+
+| p#   | Pname | color | weight | city   |
++------+-------+-------+--------+--------+
+| P1   | Nut   | Red   |  12.00 | London |
+| P2   | Bolt  | Green |  17.00 | Paris  |
+| P3   | Screw | Blue  |  17.00 | Rome   |
+| P4   | Screw | Red   |  14.00 | London |
+| P5   | Cam   | Blue  |  12.00 | Paris  |
+| P6   | Cog   | Red   |  19.00 | London |
++------+-------+-------+--------+--------+
+6 rows in set (0.16 sec)
+
+select * from j;
++------+---------+--------+
+| j#   | jname   | City   |
++------+---------+--------+
+| J1   | Sorter  | Paris  |
+| J2   | Display | Rome   |
+| J3   | OCR     | Athens |
+| J4   | Console | Athens |
+| J5   | RAID    | London |
+| J6   | EDS     | Oslo   |
+| J7   | ARP     | London |
++------+---------+--------+
+7 rows in set (0.06 sec)
+
+select * from spj;
++------+------+------+------+
+| SNO  | PNO  | JNO  | QTY  |
++------+------+------+------+
+| S1   | P1   | J1   |   10 |
+| S2   | P2   | J2   |   20 |
+| S3   | P3   | J3   |   30 |
+| S1   | P1   | J1   |  200 |
+| S1   | P1   | J4   |  700 |
+| S2   | P3   | J1   |  400 |
+| S2   | P3   | J2   |  200 |
+| S2   | P3   | J3   |  200 |
+| S2   | P3   | J4   |  500 |
+| S2   | P3   | J5   |  600 |
+| S2   | P3   | J6   |  400 |
+| S2   | P3   | J7   |  800 |
+| S2   | P5   | J2   |  100 |
++------+------+------+------+
+13 rows in set (0.14 sec)
+-------------------------------------------
+6)Display only the S# and SNAME fields from the S table. 
+select `s#`,sname from s;
++------+-------+
+| s#   | sname |
++------+-------+
+| S1   | Smith |
+| S2   | Jones |
+| S3   | Blake |
+| S4   | Clark |
+| S5   | Adams |
++------+-------+
+5 rows in set (0.00 sec)
+
+
+-------------------------------------------
+7)Display the PNAME and COLOR from the P table for the CITY=”London”. 
+select * from J where CITY="London";
++------+-------+--------+
+| j#   | jname | City   |
++------+-------+--------+
+| J5   | RAID  | London |
+| J7   | ARP   | London |
++------+-------+--------+
+2 rows in set (0.00 sec)
+------------------------------------------- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
