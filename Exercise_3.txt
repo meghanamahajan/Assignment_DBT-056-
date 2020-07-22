@@ -110,10 +110,29 @@ with ‘o’.
 ----------------------------------------------------------------------------------------------
 
 9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
-==>
+==>select sname, case when status = 10 then 'Ten'
+when status = 20 then 'Twenty'
+when status = 30 then 'Thirty'
+when status = 40 then 'Fourty'
+end as Status 
+from s;
++-------+--------+
+| sname | Status |
++-------+--------+
+| smith | Twenty |
+| jones | Ten    |
+| blake | Thirty |
+| clark | Twenty |
+| adams | Thirty |
++-------+--------+
 --------------------------------------------------------------------------------------------
 
 10. Display the current day (e.g. Thursday). 
-==>
+==>select dayname(now());
++----------------+
+| dayname(now()) |
++----------------+
+| Wednesday      |
++----------------+
 
 =========================================================================================================
