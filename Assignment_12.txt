@@ -1,0 +1,76 @@
+                                               Assignment – 12
+Using the operators IN, ANY, and ALL.
+=======================================
+
+1) Write a query that selects all customers whose ratings are equal to or greater than
+ANY of Serres’.
+==> select cname,sname from customers,sales
+    where rating>= 
+    any(select rating from customers 
+    where snum = 
+    (select snum from sales
+     where sname='serres')) and sname!='serres'
+     and sales.snum=customers.snum;
++----------+---------+
+| cname    | sname   |
++----------+---------+
+| Giovanni | Axelrod |
+| Cisneros | Rifkin  |
++----------+---------+
+---------------------------------------------------------------------------------------------------
+2) Write a query using ANY or ALL that will find all salespeople who have no
+customers located in their city.
+==>select sname from sales
+   where snum in
+   (select snum from customers
+    where sales.city!=customers.city and
+    sales.snum = customers.snum);
++---------+
+| sname   |
++---------+
+| Axelrod |
+| Serres  |
+| Rifkin  |
+| Motika  |
++---------+
+---------------------------------------------------------------------------------------------------
+3) Write a query that selects all orders for amounts greater than any for the
+customers in London.
+==>Select onum, amt
+from orders
+where amt > any
+ ( select amt from orders, customers
+   where city =
+    "london" and orders.cnum = customers.cnum);
++------+---------+
+| onum | amt     |
++------+---------+
+| 3002 | 1900.10 |
+| 3005 | 5160.45 |
+| 3006 | 1098.16 |
+| 3009 | 1713.23 |
+| 3008 | 4723.00 |
+| 3010 | 1309.95 |
+| 3011 | 9891.88 |
++------+---------+
+----------------------------------------------------------------------------------------------------
+4) Write the above query using MIN or MAX. 
+==>select cnum,amt from orders 
+   where amt>=
+   any(select min(amt) from orders
+   where cnum in(select cnum from customers
+   where city="London"));
++------+---------+
+| cnum | amt     |
++------+---------+
+| 2001 |  767.19 |
+| 2007 | 1900.10 |
+| 2003 | 5160.45 |
+| 2008 | 1098.16 |
+| 2002 | 1713.23 |
+| 2006 | 4723.00 |
+| 2004 | 1309.95 |
+| 2006 | 9891.88 |
++------+---------+
+
+=============================================================================================================

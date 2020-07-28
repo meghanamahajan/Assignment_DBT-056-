@@ -1,0 +1,36 @@
+                Assignment – 10
+Joining a Table to Itself.
+===========================
+1) Write a query that produces all pairs of salespeople who are living in the same
+city. Exclude combinations of salespeople with themselves as well as duplicate
+rows with the order reversed.
+==>Select c.cname, a.onum, b.onum
+   from orders a, orders b, customers c
+   where a.cnum = b.cnum and
+   a.onum > b.onum and
+   c.cnum = a.cnum;
++----------+------+------+
+| cname    | onum | onum |
++----------+------+------+
+| Cisneros | 3006 | 3001 |
+| Grass    | 3010 | 3007 |
+| Clemens  | 3011 | 3008 |
++----------+------+------+
+------------------------------------------------------------------------------------------------
+2) Write a query that produces the names and cities of all customers with the same
+rating as Hoffman.
+==>Select cname, city
+   from customers
+   where rating = (select rating
+   from customers
+   where cname = 'Hoffman')
+   and cname != 'Hoffman';
++---------+--------+
+| cname   | city   |
++---------+--------+
+| Clemens | London |
+| Pereira | Rome   |
++---------+--------+
+
+
+================================================================================================
